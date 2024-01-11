@@ -2,7 +2,7 @@
   "name": "My APP",
   "short_name": "NeoBoc",
   "description": "A simple Progressive Web App",
-  "start_url": "https://theveexx.netlify.app/",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#333",
   "theme_color": "#0D1017",
