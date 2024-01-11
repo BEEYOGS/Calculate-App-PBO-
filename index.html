@@ -52,17 +52,6 @@
 <script src="/main.js"></script>
 <script src="/app.js"></script>
 <script>
-  window.addEventListener('beforeinstallprompt', (event) => {
-    // Prevent Chrome 67 and earlier from automatically showing the prompt
-    event.preventDefault();
-    // Stash the event so it can be triggered later.
-    deferredPrompt = event;
-    // Update UI to notify the user they can add to home screen
-    showInstallButton();
-  });
-</script>
-
-<script>
   window.addEventListener('load', startTypingAnimation);
   function startTypingAnimation() {
     function typeText(text, index) {
