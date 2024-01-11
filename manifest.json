@@ -1,11 +1,7 @@
 {
   "name": "My APP",
   "short_name": "NeoBoc",
-  "description": "A simple Progressive Web App",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#333",
-  "theme_color": "#0D1017",
+  "start_url": "/?home=true",
   "icons": [
     {
       "src": "/icon.png",
@@ -13,4 +9,8 @@
       "type": "image/png"
     }
   ]
+  "background_color": "#333",
+  "theme_color": "#000000",
+  "display": "fullscreen",
+  "orientantion": "potrait"
 }
