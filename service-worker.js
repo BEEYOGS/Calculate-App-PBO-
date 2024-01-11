@@ -1,4 +1,4 @@
-const CACHE_NAME = 'my-cache';
+const CACHE_NAME = 'neoboc-cache';
 const urlsToCache = [
   '/',
   '/index.html',
