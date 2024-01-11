@@ -1,7 +1,7 @@
 {
   "name": "My APP",
   "short_name": "NeoBoc",
-  "start_url": "/?home=true",
+  "start_url": "/",
   "icons": [
     {
       "src": "/icon.png",
