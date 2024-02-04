@@ -128,8 +128,8 @@ button:hover {
 .modal-content {
   background: linear-gradient(to right, #ff8c00, #ff4500);
   padding: 20px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   position: relative;
 }
 
