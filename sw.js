@@ -1,34 +1,21 @@
 const CACHE_NAME = 'my-cache';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/style.css',
-  '/main.js',
-  '/app.js',
-  '/icon.png'
+  '/', '/index.html', '/manifest.json', 
+  '/style.css', '/main.js', '/app.js', '/icon.png'
 ];
 
-self.addEventListener('install', function(event) {
+self.addEventListener('install', (event) =>
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(function(cache) {
-        return cache.addAll(urlsToCache);
-      })
-      .catch(function(error) {
-        console.error('Caching failed:', error);
-      })
-  );
-});
+      .then((cache) => cache.addAll(urlsToCache))
+      .catch((error) => console.error('Caching failed:', error))
+  )
+);
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', (event) =>
   event.respondWith(
-    caches.match(event.request)
-      .then(function(response) {
-        return response || fetch(event.request);
-      })
-      .catch(function(error) {
-        console.error('Fetch failed:', error);
-      })
-  );
-});
+    caches.match(event.request).then(
+      (response) => response || fetch(event.request)
+    ).catch((error) => console.error('Fetch failed:', error))
+  )
+);
