@@ -1,65 +1,25 @@
-  function handleButtonClick(event) {
-    const button = event.target;
-    const buttonValue = button.dataset.value || button.innerText;
+const actions = {
+  equals: () => calculate(),
+  clear: () => (display.value = ''),
+  backspace: () => (display.value = display.value.slice(0, -1)),
+  history: () => (historyModal.style.display = 'block'),
+  'clear-history': () => (historyList.innerHTML = '', historyModal.style.display = 'none'),
+};
 
-    if (buttonValue === "equals") {
-      calculate();
-    } else if (buttonValue === "clear") {
-      clearDisplay();
-    } else if (buttonValue === "backspace") {
-      backspace();
-    } else if (buttonValue === "history") {
-      showHistory();
-    } else if (buttonValue === "clear-history") {
-      clearHistory();
-    } else {
-      appendToDisplay(buttonValue);
-    }
-  }
+const display = document.getElementById('display');
+const historyList = document.getElementById('history-list');
+const historyModal = document.getElementById('history-modal');
 
-  function appendToDisplay(value) {
-    document.getElementById('display').value += value;
-  }
+function handleButtonClick({ target: { dataset, innerText } }) {
+  (actions[dataset.value || innerText] || ((v) => (display.value += v)))(dataset.value || innerText);
+}
 
-  function clearDisplay() {
-    document.getElementById('display').value = '';
+const calculate = () => {
+  try {
+    const result = eval(display.value);
+    display.value = result;
+    historyList.insertAdjacentHTML('beforeend', `<li>${result}</li>`);
+  } catch {
+    display.value = 'Error';
   }
-
-  function backspace() {
-    const currentDisplay = document.getElementById('display').value;
-    document.getElementById('display').value = currentDisplay.slice(0, -1);
-  }
-
-  function showHistory() {
-    openHistoryModal();
-  }
-
-  function clearHistory() {
-    document.getElementById('history-list').innerHTML = '';
-    closeHistoryModal();
-  }
-
-  function openHistoryModal() {
-    document.getElementById('history-modal').style.display = 'block';
-  }
-
-  function closeHistoryModal() {
-    document.getElementById('history-modal').style.display = 'none';
-  }
-
-  function calculate() {
-    try {
-      const result = eval(document.getElementById('display').value);
-      document.getElementById('display').value = result;
-      saveToHistory(result);
-    } catch (error) {
-      document.getElementById('display').value = 'Error';
-    }
-  }
-
-  function saveToHistory(result) {
-    const historyList = document.getElementById('history-list');
-    const historyItem = document.createElement('li');
-    historyItem.textContent = result;
-    historyList.appendChild(historyItem);
-  }
+};
