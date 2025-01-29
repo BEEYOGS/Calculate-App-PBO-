@@ -13,59 +13,68 @@
 </head>
 <body>
   <div class="calculator-container">
-    <h1 class="calculator-title" id="typing-title"></h1>
-    <p class="calculator-author">by vexx</p>
-    <div class="calculator">
-      <input type="text" class="display" id="display" readonly>
-      <div class="buttons" onclick="handleButtonClick(event)">
-        <button class="icon" data-value="history"><i class="fas fa-history"></i></button>
-        <button class="icon" data-value="clear"><i class="fas fa-ban"></i></button>
-        <button class="icon" data-value="backspace"><i class="fas fa-backspace"></i></button>
-        <button class="icon" data-value="clear-history"><i class="fas fa-trash-alt"></i></button>      
-        <button data-value="1">1</button>
-        <button data-value="2">2</button>
-        <button data-value="3">3</button>
-        <button class="operator" data-value="/">÷</button>
-        <button data-value="4">4</button>
-        <button data-value="5">5</button>
-        <button data-value="6">6</button>
-        <button class="operator" data-value="*">×</button>
-        <button data-value="7">7</button>
-        <button data-value="8">8</button>
-        <button data-value="9">9</button>
-        <button class="operator" data-value="-">-</button>
-        <button class="operator" data-value=".">.</button>      
-        <button data-value="0">0</button>
-        <button class="operator" data-value="equals">=</button>    
-        <button class="operator" data-value="+">+</button>
-      </div>
-      <div id="history-modal" class="modal">
-        <div class="modal-content">
-          <span class="close" onclick="closeHistoryModal()">&times;</span>
-          <h2>History</h2>
-          <ul id="history-list"></ul>
-        </div>
+  <h1 class="calculator-title" id="typing-title">NEOBOC</h1>
+  <p class="calculator-author">by vexx</p>
+  <div class="calculator">
+  <div class="calculator">
+    <input type="text" class="display" id="display" readonly>
+    <div class="buttons" onclick="handleButtonClick(event)">
+      <button class="icon" data-value="history"><i class="fas fa-history"></i></button>
+      <button class="icon" data-value="clear"><i class="fas fa-ban"></i></button>
+      <button class="icon" data-value="backspace"><i class="fas fa-backspace"></i></button>
+      <button class="icon" data-value="clear-history"><i class="fas fa-trash-alt"></i></button>      
+      <button data-value="1">1</button>
+      <button data-value="2">2</button>
+      <button data-value="3">3</button>
+      <button class="operator" data-value="/">÷</button>
+      <button data-value="4">4</button>
+      <button data-value="5">5</button>
+      <button data-value="6">6</button>
+      <button class="operator" data-value="*">×</button>
+      <button data-value="7">7</button>
+      <button data-value="8">8</button>
+      <button data-value="9">9</button>
+      <button class="operator" data-value="-">-</button>
+      <button class="operator" data-value=".">.</button>      
+      <button data-value="0">0</button>
+      <button class="operator" data-value="equals">=</button>    
+      <button class="operator" data-value="+">+</button>
+    </div>
+    <div id="history-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeHistoryModal()">&times;</span>
+        <h2>History</h2>
+        <ul id="history-list"></ul>
       </div>
     </div>
   </div>
+ </div>
+</div>
 
-  <script>
-    // Menampilkan animasi mengetik pada judul
-    window.addEventListener('load', () => {
-      const titleText = "NEOBOC";
-      const titleElement = document.getElementById('typing-title');
-      let index = 0;
+<script src="/main.js"></script>
+<script src="/app.js"></script>
+<script>
+  window.addEventListener('load', startTypingAnimation);
+  function startTypingAnimation() {
+    function typeText(text, index) {
+      if (index < text.length) {
+        titleElement.textContent += text[index];
+        setTimeout(() => {
+          typeText(text, index + 1);
+        }, 150); 
+      } else {
+        setTimeout(() => {
+          titleElement.textContent = '';
+          typeText(text, 0);
+        }, 1000);
+      }
+    }
+    const titleText = "NEOBOC";
+    const titleElement = document.getElementById('typing-title');
+    titleElement.classList.add('typing');
+    typeText(titleText, 0);
+  }
+</script>
 
-      const typeText = () => {
-        titleElement.textContent = titleText.slice(0, index++);
-        if (index > titleText.length) index = 0;
-        setTimeout(typeText, index ? 150 : 1000);
-      };
-
-      typeText();
-    });
-  </script>
-  <script src="/main.js"></script>
-  <script src="/app.js"></script>
 </body>
 </html>
